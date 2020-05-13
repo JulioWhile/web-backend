@@ -47,12 +47,6 @@ const ComputadoraSchema = new Schema({
 		type: String,
 		required: false,
 	},
-	tiendas: [
-		{
-			type: Schema.ObjectId,
-			ref: 'Tienda',
-		},
-	],
 });
 
 module.exports = mongoose.model('Computadora', ComputadoraSchema);

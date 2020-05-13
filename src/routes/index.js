@@ -15,6 +15,7 @@ const Usuario = require('../models/Usuario');
 router.get('/computadora', async (req, res) => {
 	try {
 		const producto = await Computadora.find();
+
 		res.json(producto);
 	} catch (err) {
 		res.json({ message: err });
@@ -55,7 +56,6 @@ router.post('/computadora', async (req, res) => {
 		hdd: req.body.hdd,
 		ssd: req.body.ssd,
 		precio: req.body.precio,
-		tiendas: req.body.tiendas,
 	});
 	try {
 		const savedProduct = await post.save();
@@ -164,8 +164,9 @@ router.post('/usuarios', async (req, res) => {
 // Obtener todos los usuarios
 router.get('/usuarios', async (req, res) => {
 	try {
-		const usuario = await Usuario.find();
-		res.json(usuario);
+		const usuarios = await Usuario.find();
+		res.json(usuarios);
+		
 	} catch (err) {
 		res.json({ message: err });
 	}
