@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
+const cors = require('cors');
 app.use(bodyParser.json());
 
 // Conectar a bd
@@ -23,6 +24,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 
 // Middlewares
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 
