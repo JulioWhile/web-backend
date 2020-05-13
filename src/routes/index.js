@@ -28,9 +28,9 @@ router.get('/computadora', (req, res) => {
                     count: conteo,
                     compus
                 });
-            })
-        })
-})
+            });
+        });
+});
 
 // Obtener una computadora en especifico
 router.get('/computadora/:id', async (req, res) => {
