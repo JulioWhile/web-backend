@@ -12,15 +12,25 @@ const Usuario = require('../models/Usuario');
  */
 
 // Obtener todas las computadoras
-router.get('/computadora', async (req, res) => {
-	try {
-		const producto = await Computadora.find();
-
-		res.json(producto);
-	} catch (err) {
-		res.json({ message: err });
-	}
-});
+router.get('/computadora', (req, res) => {
+    //El parámetro status solicita los pacientes activos
+    Computadora.find()
+        .exec((err, compus) => {
+            if (err) {
+                return res.status(400).json({
+                    success: false,
+                    err
+                });
+            }
+            Computadora.countDocuments({ status: true }, (err, conteo) => {
+                res.json({
+                    success: true,
+                    count: conteo,
+                    compus
+                });
+            })
+        })
+})
 
 // Obtener una computadora en especifico
 router.get('/computadora/:id', async (req, res) => {
