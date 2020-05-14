@@ -44,8 +44,8 @@ router.get('/computadora/:id', async (req, res) => {
 // Quitar una computadora
 router.delete('/computadora/:id', async (req, res) => {
 	try {
-		const producto = await Computadora.findByIdAndDelete(id);
-		res.json(producto);
+		const computadora = await Computadora.remove({ _id: req.params.id });
+		res.json(computadora);
 	} catch (err) {
 		res.json({ message: err });
 	}
