@@ -212,7 +212,7 @@ router.get('/usuarios/:id', async (req, res) => {
 // Quitar un usuario en especifico
 router.delete('/usuarios/:id', async (req, res) => {
 	try {
-		const usuarios = await Usuai.findByIdAndDelete(id);
+		const usuarios = await Usuario.remove({ _id: req.params.id });
 		res.json(usuarios);
 	} catch (err) {
 		res.json({ message: err });
