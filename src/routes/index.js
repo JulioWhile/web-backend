@@ -13,23 +13,22 @@ const Usuario = require('../models/Usuario');
 
 // Obtener todas las computadoras
 router.get('/computadora', (req, res) => {
-    //El parámetro status solicita los pacientes activos
-    Computadora.find()
-        .exec((err, compus) => {
-            if (err) {
-                return res.status(400).json({
-                    success: false,
-                    err
-                });
-            }
-            Computadora.countDocuments({ status: true }, (err, conteo) => {
-                res.json({
-                    success: true,
-                    count: conteo,
-                    compus
-                });
-            });
-        });
+	//El parámetro status solicita los pacientes activos
+	Computadora.find().exec((err, compus) => {
+		if (err) {
+			return res.status(400).json({
+				success: false,
+				err,
+			});
+		}
+		Computadora.countDocuments({ status: true }, (err, conteo) => {
+			res.json({
+				success: true,
+				count: conteo,
+				compus,
+			});
+		});
+	});
 });
 
 // Obtener una computadora en especifico
@@ -94,13 +93,23 @@ router.put('/computadora/:id', async (req, res) => {
  */
 
 // Obtener todas las tiendas
-router.get('/tiendas', async (req, res) => {
-	try {
-		const tiendas = await Tienda.find();
-		res.json(tiendas);
-	} catch (err) {
-		res.json({ message: err });
-	}
+router.get('/tiendas', (req, res) => {
+	//El parámetro status solicita los pacientes activos
+	Tienda.find().exec((err, tiendas) => {
+		if (err) {
+			return res.status(400).json({
+				success: false,
+				err,
+			});
+		}
+		Tienda.countDocuments({ status: true }, (err, conteo) => {
+			res.json({
+				success: true,
+				count: conteo,
+				tiendas,
+			});
+		});
+	});
 });
 
 // Agregar una Tienda
@@ -142,7 +151,7 @@ router.get('/tiendas/:id', async (req, res) => {
 // Quitar una tienda
 router.delete('/tiendas/:id', async (req, res) => {
 	try {
-		const tienda = await Product.findByIdAndDelete(id);
+		const tienda = await Tienda.remove({ _id: req.params.id });
 		res.json(tienda);
 	} catch (err) {
 		res.json({ message: err });
@@ -172,14 +181,22 @@ router.post('/usuarios', async (req, res) => {
 });
 
 // Obtener todos los usuarios
-router.get('/usuarios', async (req, res) => {
-	try {
-		const usuarios = await Usuario.find();
-		res.json(usuarios);
-		
-	} catch (err) {
-		res.json({ message: err });
-	}
+router.get('/usuarios', (req, res) => {
+	Usuario.find().exec((err, users) => {
+		if (err) {
+			return res.status(400).json({
+				success: false,
+				err,
+			});
+		}
+		Usuario.countDocuments({ status: true }, (err, conteo) => {
+			res.json({
+				success: true,
+				count: conteo,
+				users,
+			});
+		});
+	});
 });
 
 // Obtener un Usuario en especifico
