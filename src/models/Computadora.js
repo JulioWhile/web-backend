@@ -35,6 +35,11 @@ const ComputadoraSchema = new Schema({
 		type: Number,
 		required: true,
 	},
+	descontinuado: {
+		type: Boolean,
+		required: true,
+		default: false
+	},
 	tarjetaVideo: {
 		type: String,
 		required: false,

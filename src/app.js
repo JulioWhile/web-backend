@@ -17,7 +17,9 @@ mongoose
 	.catch((err) => console.log(err));
 
 // Importar Rutas
-const indexRoutes = require('./routes/index');
+const computersRoutes = require('./routes/computers');
+const storesRoutes = require('./routes/stores');
+const usersRoutes = require('./routes/users');
 
 // Configuración
 app.set('port', process.env.PORT || 3000);
@@ -29,7 +31,9 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 
 // Rutas
-app.use('/', indexRoutes);
+app.use('/', computersRoutes);
+app.use('/', storesRoutes);
+app.use('/', usersRoutes);
 
 // Iniciar Servidor
 app.listen(app.get('port'), () => {
