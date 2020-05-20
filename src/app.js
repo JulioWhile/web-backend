@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // Conectar a bd
 mongoose
-	.connect('mongodb+srv://admin:123Qwe@productsctr-8g4y4.mongodb.net/test', {
+	.connect('mongodb+srv://root:123Qwe@testingback-jn5vp.mongodb.net/test', {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
